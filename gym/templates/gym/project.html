@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%  static  'css/gym_website.css'  %}">
+    <title>Suraj Fitness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        .dropbtn {
+            background-color: #1d1f1d;
+            color: white;
+            padding: 9px;
+            font-size: 14px;
+            border: 22px;
+            cursor: pointer;
+            font-family: 'Baloo Bhai 2', cursive;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-top: 0px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+
+        }
+
+        .mt-4 {
+            margin-top: 21.5rem !important;
+            display: flex;
+            justify-content: end;
+        }
+
+        .bg-primary {
+            background-color: #FAFAFA !important;
+        }
+
+        .text-white {
+            color: #100f0f !important;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+
+    <header class="header">
+
+        <!-- this bor for logo -->
+        <div class="left">
+            <img src="{% static 'css/dumbell2.jpg' %}" alt="">
+            <div>Suraj Fitness</div>
+        </div>
+        <!-- mid box for navbar -->
+        <div class="mid">
+            <ul class="navbar">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Fitness Calculator</a></li>
+                <li><a href="contact">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <!-- right box for button -->
+        <div class="right">
+            {% if not request.user.is_authenticated %}
+            <div class="dropdown">
+                <button class="dropbtn">New user?</button>
+                <div class="dropdown-content">
+                    <a href="signup">Signup</a>
+                    <a href="login">Login</a>
+                  
+                </div>
+            </div>
+            <!-- <button class="btn"><a href="signup">Signup</a></button>
+            <button class="btn"><a href="login">login</a></button> -->
+
+        </div>
+
+        
+        <div class="right">
+            {% else %}
+            <div class="dropdown">
+                <button class="dropbtn">Welcome {{ request.user }}</button>
+                <div class="dropdown-content">
+                    <a href="logout">Logout</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        </div>
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}  alert-dismissible fade show" role="alert">
+            <strong></strong>{{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        <div class="container">
+            <h1 class="as">Join the best gym of Dombivli</h1>
+            <!-- <form method="post" action="{% url 'save' %}" id="Contact" class="bv-form" role="form"
+                novalidate="novalidate">
+                {% csrf_token %}
+                <div class="form-group">
+                    <b>name</b><input type="text" name="name" id="name" placeholder="Enter your name">
+                    <b>phone</b><input type="tel" name="phone" id="phone" placeholder="Enter your phone number">
+                    <b>email</b><input type="email" name="email" id="email" placeholder="Enter your email">
+                    <b>gender</b><select name="gender" id="gender">
+                        <option>....</option>
+                        <option value="male" name="gender">male</option>
+                        <option value="female" name="gender">female</option>
+                        <option value="Others" name="gender">Others</option>
+                    </select><br>
+                    <b>address</b><input type="text" name="address" id="address" placeholder="Enter your address"><br>
+                    <b>dob</b><input type="date" name="dob" id="dob" placeholder="d-o-b">
+                </div>
+                <button class="ser">Submit</button>
+            </form> -->
+            <div class="container mt-4 ">
+                <div class="row   ">
+
+                    <div class="col-lg-4 col-md-12 card text-white bg-primary mb-3 mx-2 " style="max-width: 18rem;">
+                        <div class="card-header">Header</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Primary card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 card text-white bg-primary mb-3 mx-2" style="max-width: 18rem;">
+                        <div class="card-header">Header</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Primary card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 card text-white bg-primary mb-3 mx-2" style="max-width: 18rem;">
+                        <div class="card-header">Header</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Primary card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h5 class="card-title">Primary card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p> -->
+        </div>
+        </div>
+
+        </div>
+    </header>
+
+</body>
+
+</html>
